@@ -9,7 +9,8 @@
 import MainHeader from "@/components/MainHeader"
 export default {
     created(){
-        this.$store.dispatch('loadItems')
+        this.$store.dispatch('init')
+        
     },
     components:{
         MainHeader
