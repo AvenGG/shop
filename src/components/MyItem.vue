@@ -67,7 +67,6 @@ export default {
         box-shadow: 0px 0px 5px 0px rgb(116, 116, 116);
         display: flex;
         justify-content: space-between;
-        margin-bottom: 10px;
         border-radius: 5px;
         box-sizing: border-box;
         background-color: white;
