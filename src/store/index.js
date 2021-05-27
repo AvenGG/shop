@@ -14,7 +14,8 @@ const loadItems = () =>{
 export default createStore({
   state: {
     items: [],
-    basketItems:[]
+    basketItems:[],
+    categories:{}
   },
   getters:{
     getItems(state){
@@ -26,6 +27,9 @@ export default createStore({
     getBasketItemsId(state){
       return state.basketItems
     },
+    getCategories(state){
+      return state.categories
+    }
   },
   mutations: {
     SET_ITEMS(state,payload){
@@ -37,12 +41,31 @@ export default createStore({
     DELETE_BASKET_ITEM(state,payload){
       state.basketItems = state.basketItems.filter((item)=>item !=payload)
     },
+    SET_CATEGORIES(state){
+        let categories = {}
+        state.items.forEach(item => {
+          if(item.category.value in categories){
+            if(!(item.category.subcategory.value in categories[item.category.value].subcategories)){
+              categories[item.category.value].subcategories[item.category.subcategory.value] = item.category.subcategory.name
+            }
+          }else{
+            categories[item.category.value] = {
+              name: item.category.name,
+              subcategories: {
+                [item.category.subcategory.value]: item.category.subcategory.name
+              }
+            }
+          }
+        })
+        state.categories = categories
+    }
   },
   actions: {
-    async loadItems({commit}, payload){
+    async init({commit}, payload){
       try{
         const items = await loadItems()
         commit('SET_ITEMS', items)
+        commit('SET_CATEGORIES')
       }catch(error){
         console.error(error)
       }
