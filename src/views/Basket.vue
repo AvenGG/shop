@@ -1,32 +1,57 @@
 <template>
     <div class="page">
-        Корзина:
-        <div v-if="basket.length">
-            <div class="item"
-                v-for="item in items"
-                :key="item.id"
-            >
-                <img class="item__image" :src="item.image" alt="">
-                <div class="item__name">
-                    {{item.name}}
-                </div>
-                <div class="container">
-                    <button class="item__delete-button"
-                        @click="deleteItem(item.id)"
-                    >
-                        &times;
-                    </button>
-                    <div class="item__price">
-                        {{item.price}} &#8381;
+        <div class="label">Ваша корзина: </div>
+        <div v-if="basket.length" class="basket">
+            <div class="basket__items">
+                <div class="item"
+                    v-for="item in items"
+                    :key="item.id"
+                >
+                    <img class="item__image" :src="item.image" alt="">
+                    <div class="item__name">
+                        {{item.name}}
                     </div>
+                    <div class="container">
+                        <button class="item__delete-button"
+                            @click="deleteItem(item.id)"
+                        >
+                            &times;
+                        </button>
+                        <div class="item__price">
+                            {{item.price}} &#8381;
+                        </div>
+                    </div>
+
                 </div>
-                
+
             </div>
-                    
+            
+
+            <div class="checkout">
+                <div class="checkout__items-count">
+                    Товаров к покупке: <strong>{{basket.length}}</strong>
+                </div>
+                <div class="checkout__items-sum">
+                    Сумма: <strong>{{sum}} &#8381;</strong>
+                </div>
+                <button class="clear-basket_button"
+                    @click="clearBasket"
+                >
+                    Очистить корзину
+                </button>
+                <button class="checkout__button"
+                    @click="checkout"
+                >
+                    Оформить заказ
+                </button>
+            </div>
                 
         </div>
         <div v-else>
             Корзина пуста!
+            <router-link :to="{name: 'Home'}" class="link">
+                Перейти к списку товаров
+            </router-link>
         </div>
         
     </div>
@@ -43,6 +68,14 @@ export default {
     methods:{
         deleteItem(item){
             this.$store.commit('DELETE_BASKET_ITEM',item)
+        },
+        clearBasket(){
+            this.basket.forEach(item => this.deleteItem(item));
+            
+        },
+        checkout(){
+            alert('Покупка оформлена!')
+            this.clearBasket()
         }
     },
     computed:{
@@ -51,6 +84,11 @@ export default {
         },
         items(){
             return this.$store.getters.getItemsById(this.basket)
+        },
+        sum(){
+            return this.items.reduce((acc,cv)=>{
+                return acc + cv.price
+            },0)
         }
 
     }
@@ -58,6 +96,25 @@ export default {
 </script>
 
 <style scoped>
+    .page{
+        width: 70%;
+        min-width: 720px;
+        margin: 0 auto;
+    }
+    .label{
+        font-size: 20px;
+    }
+    .link{
+        color: rgb(140, 0, 255);
+        text-decoration: none;
+        font-weight: bold;
+    }
+    .basket{
+        display: flex;
+    }
+    .basket__items{
+        margin-right: 10px;
+    }
     .item{
         background-color: white;
         display:flex;
@@ -68,6 +125,7 @@ export default {
         align-items: center;
         margin-bottom: 10px;
         border-radius: 5px;
+        box-sizing: border-box;
     }
     .item__image{
         max-width: 100px;
@@ -105,5 +163,57 @@ export default {
     .item__price{
         font-weight: bold;
         color: rgb(39, 39, 39);
+    }
+    .checkout{
+        width: 200px;
+        height: 210px;
+        padding:10px;
+        box-sizing: border-box;
+        background-color: white;
+        box-shadow: 0px 0px 5px 0px rgb(116, 116, 116);
+        border-radius: 10px;
+        display: flex;
+        flex-direction: column;
+    }
+    .checkout__items-count{
+        margin-bottom: 10px;
+        text-align: center;
+    }
+    .checkout__items-sum{
+        text-align: center;
+        font-size: 18px;
+        margin-bottom: 10px;
+
+    }
+    .checkout__button{
+        width: 120px;
+        height: 40px;
+        background-color: rgb(94, 255, 207);
+        border:none;
+        border-radius: 5px;
+        margin:25px auto 0 auto;
+        box-shadow: 0px 2px 5px 0px rgb(78, 78, 78);
+    }
+    .checkout__button:active{
+        transform: translateY(2px);
+    }
+    .clear-basket_button{
+        width: 130px;
+        height: 30px;
+        background-color: rgb(255, 74, 98);
+        border:none;
+        border-radius: 5px;
+        margin:10px auto 0 auto;
+        box-shadow: 0px 2px 5px 0px rgb(78, 78, 78);
+    }
+    .clear-basket_button:active{
+        transform: translateY(2px);
+    }
+    .checkout__button:hover {
+        box-shadow: 0px 2px 5px 0px rgb(30, 126, 97);
+    }
+    .clear-basket_button:hover{
+        box-shadow: 0px 2px 5px 0px rgb(175, 0, 44);
+
     }
 </style>
