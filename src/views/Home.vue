@@ -9,11 +9,14 @@
     <div class="container">
       <div class="filters__container">
         <ItemFilters class="item-filters"
+          v-if="items.length"
+          :items="itemsByCategory"
+          @filter-items="filterItems"
         />
       </div>
       <div class="item-list">
         <MyItem class="item"
-          v-for="item of itemsByCategory"
+          v-for="item of filteredItems"
           :key="item.id"
           :item="item"
         />
@@ -31,7 +34,8 @@ export default {
   data(){
     return {
       category: 'all',
-      subcategory: 'all'
+      subcategory: 'all',
+      filter: []
     }
   },
   created(){
@@ -44,6 +48,10 @@ export default {
     },
     changeSubcategory(subcategory){
       this.subcategory = subcategory
+    },
+    filterItems(filter){
+      this.filter = filter
+      
     }
   },
   computed:{
@@ -58,6 +66,30 @@ export default {
         result = result.filter((item)=>item.category.subcategory.value == this.subcategory)
       }
       return result
+    },
+    filteredItems(){
+      let categories = Object.keys(this.filter)
+
+      if(!categories.length) return this.itemsByCategory
+      
+      let filteredByCategory = []
+      this.itemsByCategory.forEach((item =>{
+        let itemCategories = Object.keys(item.spec)
+        let isMatch = true
+        categories.forEach(category => {
+          if(itemCategories.includes(category)){
+            if(this.filter[category].includes(item.spec[category].value)){
+              isMatch = isMatch && true
+            }else{
+              isMatch = false
+            }
+          }else{
+            isMatch = false
+          }
+        });
+        if(isMatch) filteredByCategory.push(item)
+      }))
+      return filteredByCategory
     }
   },
   components: {
@@ -90,5 +122,8 @@ export default {
   }
   .item{
     margin-bottom: 10px;
+  }
+  .item-filters{
+    min-height: 630px;
   }
 </style>
