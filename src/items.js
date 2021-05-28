@@ -80,11 +80,11 @@ export default [
           title: 'Количество потоков',
           value: '12'
         },
-        frequency: {
+        coreFrequency: {
           title: 'Базовая частота процессора',
           value: '3800 Mhz'
         },
-        frequencyMax: {
+        coreFrequencyMax: {
           title: 'Максимальная частота в турбо режиме',
           value: '4400 Mhz'
         },
@@ -113,11 +113,11 @@ export default [
           title: 'Количество потоков',
           value: '16'
         },
-        frequency: {
+        coreFrequency: {
           title: 'Базовая частота процессора',
           value: '3800 Mhz'
         },
-        frequencyMax: {
+        coreFrequencyMax: {
           title: 'Максимальная частота в турбо режиме',
           value: '5100 Mhz'
         },
@@ -125,7 +125,7 @@ export default [
       }
     },
     {id: 5, name: 'Смартфон realme 6 4/128 ГБ белый', price: 15999,
-      image: 'https://gurushops.ru/upload/iblock/6be/6be34cbfb90e187bfffda8ccb83def32.jpg',
+      image: 'https://mi-str.ru/wa-data/public/shop/products/66/61/6166/images/11376/11376.970.jpg',
       category:{
         value:'gadgets',
         name:'Гаджеты',
@@ -147,15 +147,15 @@ export default [
           title: 'Процессор',
           value: 'MediaTek Helio G90T'
         },
-        frequency: {
-          title: 'Частота процессора',
-          value: '2 GHz'
+        coreFrequency: {
+          title: 'Базовая частота процессора',
+          value: '2000 MHz'
         },
         ram: {
           title: 'Объем оперативной памяти',
           value: '4 Gb'
         },
-        BuiltInMemory:{
+        builtInMemory:{
           title: 'Объем встроенной памяти',
           value: '128 Gb'
         }
