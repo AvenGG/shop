@@ -161,4 +161,144 @@ export default [
         }
       }
     },
-  ]
+    {id: 6, name: 'Смартфон Samsung Galaxy A41 64 ГБ белый', price: 18499,
+      image: 'https://kauf.ru/image/catalog/products/979/979009/979009_0.jpg',
+      category:{
+        value:'gadgets',
+        name:'Гаджеты',
+        subcategory:{
+          value:'smartphones',
+          name:'Смартфоны',
+        }
+      }, 
+      spec: {
+        diagonal:{
+          title: 'Диагональ экрана (дюйм)',
+          value: '6.1'
+        },
+        resolution: {
+          title: 'Разрешение экрана',
+          value: '2400x1080'
+        },
+        processor: {
+          title: 'Процессор',
+          value: 'MediaTek Helio P65 MT6768'
+        },
+        coreFrequency: {
+          title: 'Базовая частота процессора',
+          value: '1700 MHz'
+        },
+        ram: {
+          title: 'Объем оперативной памяти',
+          value: '4 Gb'
+        },
+        builtInMemory:{
+          title: 'Объем встроенной памяти',
+          value: '64 Gb'
+        }
+      }
+    },
+    {id: 7, name: 'Смартфон Apple iPhone 12 128 ГБ синий', price: 76499,
+    image: 'https://c.dns-shop.ru/thumb/st4/fit/0/0/5edf8ab001b003a75843b8c2ca4b3b96/c808ada9005d01b7a7ab4d8e22b3cdaea4c13afe7ae65345ecf03b23454e8fa8.jpg',
+    category:{
+      value:'gadgets',
+      name:'Гаджеты',
+      subcategory:{
+        value:'smartphones',
+        name:'Смартфоны',
+      }
+    }, 
+    spec: {
+      diagonal:{
+        title: 'Диагональ экрана (дюйм)',
+        value: '6.1'
+      },
+      resolution: {
+        title: 'Разрешение экрана',
+        value: '2532х1170'
+      },
+      processor: {
+        title: 'Процессор',
+        value: 'Apple A14 Bionic'
+      },
+      coreFrequency: {
+        title: 'Базовая частота процессора',
+        value: '2990 MHz'
+      },
+      ram: {
+        title: 'Объем оперативной памяти',
+        value: '4 Gb'
+      },
+      builtInMemory:{
+        title: 'Объем встроенной памяти',
+        value: '128 Gb'
+      }
+    }
+  },
+  {id: 8, name: 'Телевизор LED DEXP F22F7000K', price: 6439,
+    image: 'https://c.dns-shop.ru/thumb/st1/fit/0/0/33379d6b4d959d0534f5ef90377e7c03/6b32d2af0d1ceb521e26df6438772ab26e25478192106b0dbe9cdaa43815b3fa.jpg',
+    category:{
+      value:'tv',
+      name:'ТВ и мультимедиа',
+      subcategory:{
+        value:'televisor',
+        name:'Телевизоры',
+      }
+    }, 
+    spec: {
+      diagonal:{
+        title: 'Диагональ экрана (дюйм)',
+        value: '22'
+      },
+      resolution: {
+        title: 'Разрешение экрана',
+        value: '1920x1080'
+      },
+      frequency: {
+        title: 'Частота обновления',
+        value: '60Hz'
+      },
+      matrix: {
+        title: 'Технология изготовления матрицы',
+        value: 'VA'
+      },
+      power:{
+        title: 'Максимальная потребляемая мощность',
+        value: '50W'
+      }
+    }
+  },
+  {id: 9, name: 'Телевизор LED DEXP U50E9100Q', price: 19499,
+    image: 'https://c.dns-shop.ru/thumb/st4/fit/0/0/1d5811176d339d3af23f251217f22903/c9a61940e7e1494cbcdf194fcd7b3022f35edbdab6fcbbd48f8ce1ac3292bc6f.jpg',
+    category:{
+      value:'tv',
+      name:'ТВ и мультимедиа',
+      subcategory:{
+        value:'televisor',
+        name:'Телевизоры',
+      }
+    }, 
+    spec: {
+      diagonal:{
+        title: 'Диагональ экрана (дюйм)',
+        value: '50'
+      },
+      resolution: {
+        title: 'Разрешение экрана',
+        value: '3840x2160'
+      },
+      frequency: {
+        title: 'Частота обновления',
+        value: '60Hz'
+      },
+      matrix: {
+        title: 'Технология изготовления матрицы',
+        value: 'IPS'
+      },
+      power:{
+        title: 'Максимальная потребляемая мощность',
+        value: '93W'
+      }
+    }
+  },
+]
