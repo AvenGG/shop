@@ -16,11 +16,18 @@
       </div>
       <div class="item-list">
         <MyItem class="item"
-          v-for="item of filteredItems"
+          v-for="item of paginatedItems"
           :key="item.id"
           :item="item"
         />
+        <div class="pages">
+          <button @click="currentPage--" :disabled="currentPage == 1" >Назад</button>
+            Страница {{currentPage}} Из {{pagesCount}}
+          <button @click="currentPage++" :disabled="currentPage == pagesCount" >Вперёд</button>
+
+        </div>
       </div>
+      
     </div>
   </div>
 </template>
@@ -35,7 +42,9 @@ export default {
     return {
       category: 'all',
       subcategory: 'all',
-      filter: []
+      filter: [],
+      itemsOnPage: 5,
+      currentPage: 1
     }
   },
   created(){
@@ -90,6 +99,19 @@ export default {
         if(isMatch) filteredByCategory.push(item)
       }))
       return filteredByCategory
+    },
+    paginatedItems(){
+      let start = this.currentPage * this.itemsOnPage - this.itemsOnPage
+      let end = start + this.itemsOnPage
+      return this.filteredItems.slice(start, end)
+    },
+    pagesCount(){
+      return Math.ceil(this.filteredItems.length / this.itemsOnPage)
+    }
+  },
+  watch:{
+    pagesCount(){
+      this.currentPage = 1
     }
   },
   components: {
@@ -124,6 +146,5 @@ export default {
     margin-bottom: 10px;
   }
   .item-filters{
-    min-height: 630px;
   }
 </style>
